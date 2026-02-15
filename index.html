@@ -3,109 +3,79 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Galenite</title>
+  <meta name="color-scheme" content="light" />
+  <title>Лендинг — заглушка</title>
+  <meta name="description" content="Минималистичный лендинг: шапка + проекты." />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="./style.css" />
 </head>
+
 <body>
+  <a class="skip-link" href="#main">Перейти к контенту</a>
 
-<div class="page">
+  <div class="container">
+    <header class="header">
+      <nav class="nav" aria-label="Основная навигация">
+        <a class="brand" href="#top" aria-label="На верх страницы">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-text">Galenite</span>
+        </a>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="brand">
-      <span class="brand-dot"></span>
-      <span>Galenite</span>
-    </div>
-
-    <div class="nav-actions">
-      <a class="btn ghost" href="https://galenite.ru" target="_blank">Site</a>
-      <a class="btn primary" href="#projects">Projects</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1 class="hero-title">
-        Neutral headline<br/>
-        without cringe
-      </h1>
-
-      <p class="hero-desc">
-        Placeholder description.  
-        You will replace this text later.
-      </p>
-    </div>
-
-    <div class="hero-avatar">
-      <img
-        src="https://i.ibb.co/dwCtWFGD/IMG-6317-removebg-preview.png"
-        alt="avatar"
-      />
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="projects" id="projects">
-    <h2 class="section-title">Projects</h2>
-
-    <div class="projects-list">
-
-      <a class="project-card" href="https://galenite.ru" target="_blank">
-        <img class="project-ava" src="https://i.pravatar.cc/80?img=12" alt="">
-        <div class="project-text">
-          <div class="project-title">Project name</div>
-          <div class="project-desc">Short description placeholder</div>
+        <div class="nav-actions" aria-label="Действия">
+          <a class="btn btn-ghost" href="#projects">Проекты</a>
+          <a class="btn btn-primary" href="https://galenite.ru" target="_blank" rel="noopener noreferrer">
+            Открыть galenite.ru
+          </a>
         </div>
-        <div class="project-arrow">→</div>
-      </a>
+      </nav>
 
-      <a class="project-card" href="https://galenite.ru" target="_blank">
-        <img class="project-ava" src="https://i.pravatar.cc/80?img=22" alt="">
-        <div class="project-text">
-          <div class="project-title">Project name</div>
-          <div class="project-desc">Short description placeholder</div>
+      <section class="hero reveal" id="top" aria-label="Шапка">
+        <div class="hero-text">
+          <p class="kicker">Я — [имя].</p>
+          <h1 class="h1">Нейтральный заголовок-заглушка</h1>
+          <p class="p">
+            Здесь я позже добавлю короткое описание в 1–2 строки.
+            Сейчас это просто нейтральная заглушка.
+          </p>
+
+          <div class="hero-cta" aria-label="Быстрые ссылки">
+            <a class="btn btn-primary" href="#projects">К проектам</a>
+            <a class="btn btn-ghost" href="https://galenite.ru" target="_blank" rel="noopener noreferrer">Сайт</a>
+          </div>
         </div>
-        <div class="project-arrow">→</div>
-      </a>
 
-      <a class="project-card" href="https://galenite.ru" target="_blank">
-        <img class="project-ava" src="https://i.pravatar.cc/80?img=32" alt="">
-        <div class="project-text">
-          <div class="project-title">Project name</div>
-          <div class="project-desc">Short description placeholder</div>
+        <div class="hero-media" aria-label="Аватар">
+          <img
+            class="hero-avatar"
+            src="https://i.ibb.co/dwCtWFGD/IMG-6317-removebg-preview.png"
+            alt="Мой аватар"
+            loading="eager"
+          />
         </div>
-        <div class="project-arrow">→</div>
-      </a>
+      </section>
+    </header>
 
-      <a class="project-card" href="https://galenite.ru" target="_blank">
-        <img class="project-ava" src="https://i.pravatar.cc/80?img=42" alt="">
-        <div class="project-text">
-          <div class="project-title">Project name</div>
-          <div class="project-desc">Short description placeholder</div>
+    <main id="main">
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <div class="section-head">
+          <h2 class="h2" id="projects-title">Проекты</h2>
+          <p class="p p-muted">Карточки-заглушки, данные меняются в projects.js.</p>
         </div>
-        <div class="project-arrow">→</div>
-      </a>
 
-    </div>
-  </section>
+        <div class="projects-grid" id="projectsGrid" aria-label="Список проектов"></div>
+      </section>
+    </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <span>© <span id="year"></span></span>
-    <a href="https://galenite.ru" target="_blank">galenite.ru</a>
-  </footer>
+    <footer class="footer" aria-label="Футер">
+      <span>© <span id="year" aria-label="Текущий год"></span></span>
+      <a class="footer-link" href="https://galenite.ru" target="_blank" rel="noopener noreferrer">galenite.ru</a>
+    </footer>
+  </div>
 
-</div>
-
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
+  <script type="module" src="./projects.js"></script>
 </body>
 </html>
