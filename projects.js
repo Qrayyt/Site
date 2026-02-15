@@ -1,50 +1,55 @@
-// projects.js — здесь меняешь проекты (названия/описания/ссылки/аватары)
-
+// Меняешь только этот массив: title/desc/href/icon/tag
 const PROJECTS = [
   {
     title: "Project name",
-    description: "Short description placeholder",
+    desc: "Short description placeholder",
     href: "https://galenite.ru",
-    avatar: "https://i.pravatar.cc/88?img=12"
+    icon: "https://i.pravatar.cc/100?img=12",
+    tag: "Placeholder"
   },
   {
     title: "Project name",
-    description: "Short description placeholder",
+    desc: "Short description placeholder",
     href: "https://galenite.ru",
-    avatar: "https://i.pravatar.cc/88?img=22"
+    icon: "https://i.pravatar.cc/100?img=22",
+    tag: "Placeholder"
   },
   {
     title: "Project name",
-    description: "Short description placeholder",
+    desc: "Short description placeholder",
     href: "https://galenite.ru",
-    avatar: "https://i.pravatar.cc/88?img=32"
+    icon: "https://i.pravatar.cc/100?img=32",
+    tag: "Placeholder"
   },
   {
     title: "Project name",
-    description: "Short description placeholder",
+    desc: "Short description placeholder",
     href: "https://galenite.ru",
-    avatar: "https://i.pravatar.cc/88?img=42"
+    icon: "https://i.pravatar.cc/100?img=42",
+    tag: "Placeholder"
   },
   {
     title: "Project name",
-    description: "Short description placeholder",
+    desc: "Short description placeholder",
     href: "https://galenite.ru",
-    avatar: "https://i.pravatar.cc/88?img=52"
+    icon: "https://i.pravatar.cc/100?img=52",
+    tag: "Placeholder"
   },
   {
     title: "Project name",
-    description: "Short description placeholder",
+    desc: "Short description placeholder",
     href: "https://galenite.ru",
-    avatar: "https://i.pravatar.cc/88?img=62"
+    icon: "https://i.pravatar.cc/100?img=62",
+    tag: "Placeholder"
   }
 ];
 
-function setYear() {
-  const el = document.getElementById("year");
-  if (el) el.textContent = String(new Date().getFullYear());
+function setYear(){
+  const y = document.getElementById("year");
+  if (y) y.textContent = String(new Date().getFullYear());
 }
 
-function renderProjects() {
+function render(){
   const grid = document.getElementById("projectsGrid");
   if (!grid) return;
 
@@ -52,39 +57,30 @@ function renderProjects() {
 
   PROJECTS.forEach((p) => {
     const a = document.createElement("a");
-    a.className = "project-card reveal";
+    a.className = "card reveal";
     a.href = p.href;
     a.target = "_blank";
     a.rel = "noopener noreferrer";
 
-    const img = document.createElement("img");
-    img.className = "project-ava";
-    img.src = p.avatar;
-    img.alt = `Логотип проекта: ${p.title}`;
-    img.loading = "lazy";
+    a.innerHTML = `
+      <div class="card-top">
+        <div class="badge">
+          <img class="logo" src="${p.icon}" alt="" loading="lazy" />
+          <span class="pill">${p.tag ?? "Project"}</span>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+      </div>
 
-    const text = document.createElement("div");
-    text.className = "project-text";
+      <div>
+        <div class="card-title">${escapeHtml(p.title)}</div>
+        <p class="card-desc">${escapeHtml(p.desc)}</p>
+      </div>
 
-    const title = document.createElement("div");
-    title.className = "project-title";
-    title.textContent = p.title;
-
-    const desc = document.createElement("div");
-    desc.className = "project-desc";
-    desc.textContent = p.description;
-
-    const arrow = document.createElement("div");
-    arrow.className = "project-arrow";
-    arrow.textContent = "→";
-    arrow.setAttribute("aria-hidden", "true");
-
-    text.appendChild(title);
-    text.appendChild(desc);
-
-    a.appendChild(img);
-    a.appendChild(text);
-    a.appendChild(arrow);
+      <div class="card-footer">
+        <span class="p p-muted" style="margin:0;font-size:12px;font-weight:800;">Open</span>
+        <span class="p p-muted" style="margin:0;font-size:12px;font-weight:800;">${new URL(p.href).hostname}</span>
+      </div>
+    `;
 
     frag.appendChild(a);
   });
@@ -92,46 +88,45 @@ function renderProjects() {
   grid.appendChild(frag);
 }
 
-function setupReveal() {
-  const els = Array.from(document.querySelectorAll(".reveal"));
+function escapeHtml(str){
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function setupReveal(){
+  const els = [...document.querySelectorAll(".reveal")];
   if (!els.length) return;
 
   const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
-  if (reduced || !("IntersectionObserver" in window)) {
-    els.forEach((el) => el.classList.add("is-in"));
+  if (reduced || !("IntersectionObserver" in window)){
+    els.forEach(el => el.classList.add("in"));
     return;
   }
 
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) e.target.classList.add("is-in");
-      });
-    },
-    { threshold: 0.12, rootMargin: "80px 0px" }
-  );
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add("in");
+    });
+  }, { threshold: 0.12, rootMargin: "90px 0px" });
 
-  els.forEach((el) => io.observe(el));
+  els.forEach(el => io.observe(el));
 }
 
-function setupFocusFallback() {
-  // Фолбэк: если браузер странно себя ведёт с focus-visible, показываем фокус,
-  // когда человек реально начинает табать клавиатурой.
+function focusFallback(){
   const root = document.documentElement;
+  const onKey = (e) => { if (e.key === "Tab") root.dataset.input = "keyboard"; };
+  const onPointer = () => { delete root.dataset.input; };
 
-  function onKeydown(e) {
-    if (e.key === "Tab") root.dataset.input = "keyboard";
-  }
-  function onPointer() {
-    delete root.dataset.input;
-  }
-
-  window.addEventListener("keydown", onKeydown, { passive: true });
-  window.addEventListener("mousedown", onPointer, { passive: true });
-  window.addEventListener("touchstart", onPointer, { passive: true });
+  window.addEventListener("keydown", onKey, { passive:true });
+  window.addEventListener("mousedown", onPointer, { passive:true });
+  window.addEventListener("touchstart", onPointer, { passive:true });
 }
 
 setYear();
-renderProjects();
+render();
 setupReveal();
-setupFocusFallback();
+focusFallback();
