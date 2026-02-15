@@ -5,6 +5,13 @@ const PROJECTS = [
     href: "https://galenite.ru",
     icon: "https://i.postimg.cc/nhWgt42R/Logo.png",
     tag: "Galenite"
+  },
+  {
+    title: "Билдерские работы",
+    desc: "Мои немногочисленные работы на Minacraft Planet",
+    href: "https://www.planetminecraft.com/member/qray/",
+    icon: "https://is4-ssl.mzstatic.com/image/thumb/Purple123/v4/b3/95/73/b3957315-51c1-19f2-767a-c2683457e019/AppIcon-0-1x_U007emarketing-0-85-220-9.png/600x600wa.png",
+    tag: "Minecraft"
   }
 ];
 
