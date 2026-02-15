@@ -1,0 +1,140 @@
+/*
+  Mobile-first overrides live here.
+  We also include coarse-pointer media conditions so styles apply reliably
+  on devices that report larger CSS widths.
+*/
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  .skip {
+    display: none;
+  }
+
+  .wrap {
+    width: min(var(--container), calc(100% - 20px));
+    padding-top: 12px;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .brand {
+    min-height: 40px;
+    align-items: center;
+  }
+
+  .nav-actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .nav-actions .btn,
+  .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .hero-right {
+    order: -1;
+  }
+
+  .avatar-card {
+    max-width: 280px;
+  }
+
+  .section-head {
+    margin-bottom: 12px;
+  }
+
+  .grid {
+    gap: 10px;
+  }
+
+  .card {
+    padding: 14px;
+    border-radius: 16px;
+    gap: 10px;
+  }
+
+  .card-top {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .badge {
+    min-width: 0;
+    max-width: 100%;
+    gap: 6px;
+    padding: 7px 9px;
+  }
+
+  .logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .pill,
+  .card-title,
+  .card-desc,
+  .card-footer span {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .pill {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .card-footer {
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-top: 8px;
+  }
+
+  .mini {
+    align-items: flex-start;
+    padding: 14px;
+  }
+
+  .mini-right {
+    width: 100%;
+  }
+
+  .mini-right .chip {
+    flex: 1 1 calc(50% - 8px);
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 420px) {
+  .h1 {
+    font-size: clamp(24px, 9vw, 32px);
+  }
+
+  .p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .mini-right .chip {
+    flex-basis: 100%;
+  }
+}

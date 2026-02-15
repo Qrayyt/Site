@@ -482,20 +482,6 @@ html[data-input="keyboard"] :focus{
   border-radius: 14px;
 }
 
-/* MOBILE: вот где реально “не разваливается” */
-@media (max-width: 860px){
-  .hero{ grid-template-columns: 1fr; }
-  .nav{ flex-wrap: wrap; }
-  .nav-actions{ width: 100%; justify-content: flex-end; }
-}
-
-@media (max-width: 540px){
-  .wrap{ width:min(var(--container), calc(100% - 20px)); }
-  .hero{ padding: 20px 16px; }
-  .btn{ width: 100%; }
-  .hero-cta .btn{ justify-content: center; }
-}
-
 /* reduced motion */
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto; }
