@@ -1,45 +1,10 @@
 const PROJECTS = [
   {
     title: "Galenite",
-    desc: "Основной продакшн-сайт с акцентом на чистую верстку и скорость загрузки.",
+    desc: "Основной проект. Является прямым мостом между ИИ и человеком",
     href: "https://galenite.ru",
-    icon: "https://i.pravatar.cc/100?img=12",
-    tag: "Production"
-  },
-  {
-    title: "Landing starter",
-    desc: "Базовый шаблон лендинга: адаптив, карточки, чистая типографика, анимации по скроллу.",
-    href: "https://github.com",
-    icon: "https://i.pravatar.cc/100?img=22",
-    tag: "Template"
-  },
-  {
-    title: "Admin panel UI",
-    desc: "Интерфейс панели управления с акцентом на понятные сценарии и доступность.",
-    href: "https://github.com",
-    icon: "https://i.pravatar.cc/100?img=32",
-    tag: "UI"
-  },
-  {
-    title: "API sandbox",
-    desc: "Песочница для тестирования интеграций и быстрых прототипов API.",
-    href: "https://github.com",
-    icon: "https://i.pravatar.cc/100?img=42",
-    tag: "Backend"
-  },
-  {
-    title: "Design system",
-    desc: "Набор UI-компонентов и токенов, чтобы проекты выглядели единообразно.",
-    href: "https://github.com",
-    icon: "https://i.pravatar.cc/100?img=52",
-    tag: "Components"
-  },
-  {
-    title: "Experiments",
-    desc: "Небольшие экспериментальные фичи и идеи, которые потом идут в продакшн.",
-    href: "https://github.com",
-    icon: "https://i.pravatar.cc/100?img=62",
-    tag: "Lab"
+    icon: "https://galenite.ru/image/logo.png",
+    tag: "Ecosystem"
   }
 ];
 
