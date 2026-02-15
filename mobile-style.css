@@ -1,0 +1,77 @@
+@media (max-width: 860px){
+  .skip{ display:none; }
+
+  .hero{ grid-template-columns: 1fr; }
+
+  .nav{
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  .nav-actions{
+    width: 100%;
+    justify-content: stretch;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .nav-actions .btn{
+    width: 100%;
+  }
+}
+
+@media (max-width: 540px){
+  .wrap{ width:min(var(--container), calc(100% - 20px)); }
+  .hero{ padding: 20px 16px; }
+
+  .hero-cta .btn{
+    width: 100%;
+    justify-content: center;
+  }
+
+  .card{
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .card-top{
+    align-items: flex-start;
+  }
+
+  .badge{
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .pill{
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .card-footer{
+    gap: 8px;
+  }
+
+  .card-footer span:last-child{
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mini{
+    align-items: flex-start;
+  }
+
+  .mini-right{
+    width: 100%;
+  }
+
+  .mini-right .chip{
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
