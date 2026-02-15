@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galenite — Илья</title>
+  <meta name="description" content="Минималистичный сайт-портфолио. Шапка." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <!-- декоративный фон -->
+  <div class="bg" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="grain"></div>
+  </div>
+
+  <header class="header">
+    <nav class="nav">
+      <a class="brand" href="#">
+        <span class="brand-dot"></span>
+        <span class="brand-text">Galenite</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#" class="nav-link">Проекты</a>
+        <a href="#" class="nav-link">Контакты</a>
+        <a href="#" class="nav-link">Блог</a>
+      </div>
+
+      <div class="nav-actions">
+        <a class="btn ghost" href="#">Открыть GitHub</a>
+        <a class="btn primary" href="#">Написать мне</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-left">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>CEO • AI-system architect</span>
+        </div>
+
+        <h1 class="title">
+          Привет, я <span class="accent">Илья</span>.
+          <br />
+          Делаю <span class="accent">AI-системы</span> и продукты.
+        </h1>
+
+        <p class="subtitle">
+          Минималистично, быстро, с нормальным вкусом.
+          Тут будет портфолио, проекты Galenite и вся движуха — но пока стартуем с шапки.
+        </p>
+
+        <div class="cta">
+          <a class="btn primary big" href="#">
+            Смотреть проекты
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="btn ghost big" href="#">Связаться</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-num">01</div>
+            <div class="stat-text">Galenite ecosystem</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">02</div>
+            <div class="stat-text">Bot & AI tools</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">03</div>
+            <div class="stat-text">Design + engineering</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="avatar-card">
+          <div class="ring" aria-hidden="true"></div>
+
+          <img
+            class="avatar"
+            src="https://i.ibb.co/dwCtWFGD/IMG-6317-removebg-preview.png"
+            alt="Аватар Ильи"
+            loading="eager"
+          />
+
+          <div class="avatar-badge">
+            <span class="badge-dot"></span>
+            <span>online</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <script>
+    // лёгкий параллакс по мыши (микро-анимация, не навязчивая)
+    const card = document.querySelector('.avatar-card');
+    const max = 10;
+
+    window.addEventListener('mousemove', (e) => {
+      const { innerWidth:w, innerHeight:h } = window;
+      const x = (e.clientX / w - 0.5) * 2;
+      const y = (e.clientY / h - 0.5) * 2;
+
+      card.style.setProperty('--rx', `${(-y * max).toFixed(2)}deg`);
+      card.style.setProperty('--ry', `${(x * max).toFixed(2)}deg`);
+    }, { passive:true });
+
+    window.addEventListener('mouseleave', () => {
+      card.style.setProperty('--rx', `0deg`);
+      card.style.setProperty('--ry', `0deg`);
+    });
+  </script>
+</body>
+</html>
