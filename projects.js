@@ -1,48 +1,57 @@
-// Меняешь только этот массив: title/desc/href/icon/tag
 const PROJECTS = [
   {
-    title: "Project name",
-    desc: "Short description placeholder",
+    title: "Galenite",
+    desc: "Основной продакшн-сайт с акцентом на чистую верстку и скорость загрузки.",
     href: "https://galenite.ru",
     icon: "https://i.pravatar.cc/100?img=12",
-    tag: "Placeholder"
+    tag: "Production"
   },
   {
-    title: "Project name",
-    desc: "Short description placeholder",
-    href: "https://galenite.ru",
+    title: "Landing starter",
+    desc: "Базовый шаблон лендинга: адаптив, карточки, чистая типографика, анимации по скроллу.",
+    href: "https://github.com",
     icon: "https://i.pravatar.cc/100?img=22",
-    tag: "Placeholder"
+    tag: "Template"
   },
   {
-    title: "Project name",
-    desc: "Short description placeholder",
-    href: "https://galenite.ru",
+    title: "Admin panel UI",
+    desc: "Интерфейс панели управления с акцентом на понятные сценарии и доступность.",
+    href: "https://github.com",
     icon: "https://i.pravatar.cc/100?img=32",
-    tag: "Placeholder"
+    tag: "UI"
   },
   {
-    title: "Project name",
-    desc: "Short description placeholder",
-    href: "https://galenite.ru",
+    title: "API sandbox",
+    desc: "Песочница для тестирования интеграций и быстрых прототипов API.",
+    href: "https://github.com",
     icon: "https://i.pravatar.cc/100?img=42",
-    tag: "Placeholder"
+    tag: "Backend"
   },
   {
-    title: "Project name",
-    desc: "Short description placeholder",
-    href: "https://galenite.ru",
+    title: "Design system",
+    desc: "Набор UI-компонентов и токенов, чтобы проекты выглядели единообразно.",
+    href: "https://github.com",
     icon: "https://i.pravatar.cc/100?img=52",
-    tag: "Placeholder"
+    tag: "Components"
   },
   {
-    title: "Project name",
-    desc: "Short description placeholder",
-    href: "https://galenite.ru",
+    title: "Experiments",
+    desc: "Небольшие экспериментальные фичи и идеи, которые потом идут в продакшн.",
+    href: "https://github.com",
     icon: "https://i.pravatar.cc/100?img=62",
-    tag: "Placeholder"
+    tag: "Lab"
   }
 ];
+
+const FALLBACK_ICON = "https://dummyimage.com/100x100/e8eaed/5f6368&text=PR";
+
+function safeUrl(input) {
+  try {
+    return new URL(input);
+  } catch {
+    return null;
+  }
+}
 
 function setYear(){
   const y = document.getElementById("year");
@@ -52,21 +61,32 @@ function setYear(){
 function render(){
   const grid = document.getElementById("projectsGrid");
   if (!grid) return;
+  grid.innerHTML = "";
 
   const frag = document.createDocumentFragment();
 
-  PROJECTS.forEach((p) => {
+  PROJECTS.forEach((raw) => {
+    const p = {
+      title: raw?.title ?? "Без названия",
+      desc: raw?.desc ?? "Описание скоро добавим.",
+      href: raw?.href ?? "#",
+      icon: raw?.icon ?? FALLBACK_ICON,
+      tag: raw?.tag ?? "Project"
+    };
+    const parsedHref = safeUrl(p.href);
+    const hostname = parsedHref?.hostname ?? "example.com";
+
     const a = document.createElement("a");
     a.className = "card reveal";
-    a.href = p.href;
+    a.href = parsedHref?.href ?? "#";
     a.target = "_blank";
     a.rel = "noopener noreferrer";
 
     a.innerHTML = `
       <div class="card-top">
         <div class="badge">
-          <img class="logo" src="${p.icon}" alt="" loading="lazy" />
-          <span class="pill">${p.tag ?? "Project"}</span>
+          <img class="logo" src="${escapeHtml(p.icon)}" alt="" loading="lazy" />
+          <span class="pill">${escapeHtml(p.tag)}</span>
         </div>
         <span class="arrow" aria-hidden="true">→</span>
       </div>
@@ -78,9 +98,14 @@ function render(){
 
       <div class="card-footer">
         <span class="p p-muted" style="margin:0;font-size:12px;font-weight:800;">Open</span>
-        <span class="p p-muted" style="margin:0;font-size:12px;font-weight:800;">${new URL(p.href).hostname}</span>
+        <span class="p p-muted" style="margin:0;font-size:12px;font-weight:800;">${escapeHtml(hostname)}</span>
       </div>
     `;
+
+    const logo = a.querySelector(".logo");
+    logo?.addEventListener("error", () => {
+      logo.src = FALLBACK_ICON;
+    }, { once: true });
 
     frag.appendChild(a);
   });
