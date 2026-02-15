@@ -1,10 +1,10 @@
 const PROJECTS = [
   {
-    title: "Galenite",
-    desc: "Основной проект. Является прямым мостом между ИИ и человеком",
+    title: "Основной проект",
+    desc: "Является прямым мостом между ИИ и человеком",
     href: "https://galenite.ru",
-    icon: "https://galenite.ru/image/logo.png",
-    tag: "Ecosystem"
+    icon: "https://i.postimg.cc/nhWgt42R/Logo.png",
+    tag: "Galenite"
   }
 ];
 
